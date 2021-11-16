@@ -1,0 +1,32 @@
+{
+  "name": "yai-web",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "@iconify/iconify": "^2.1.0",
+    "ant-design-vue": "^2.2.8",
+    "axios": "^0.24.0",
+    "vite-plugin-importer": "^0.2.5",
+    "vue": "^3.2.16",
+    "vue-router": "^4.0.12",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@iconify/json": "^1.1.428",
+    "@tailwindcss/postcss7-compat": "^2.2.17",
+    "@vitejs/plugin-vue": "^1.9.3",
+    "autoprefixer": "^9.8.8",
+    "less": "^4.1.2",
+    "postcss": "^7.0.39",
+    "prettier": "2.4.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
+    "typescript": "^4.4.3",
+    "vite": "^2.6.4",
+    "vite-plugin-purge-icons": "^0.7.0",
+    "vue-tsc": "^0.3.0"
+  }
+}
