@@ -1,13 +1,13 @@
 # You And I pc/mobile
 
-## Install and used
+## 初始化
 
 - Get project
 
 - Get the project code
 
 ```bash
-git clone 
+git clone https://github.com/SCoolUncle/yai-web.git
 ```
 
 - Installation dependencies
@@ -31,7 +31,12 @@ yarn dev
 yarn build
 ```
 
-## Git Contribution submission specification
+## 编码规范
+
+- 基于airbnb的编码规范，请严格遵守！！！
+- [airbnb](https://github.com/libertyAlone/airbnb-javascript-style-guide-cn)
+
+## Git 提交规范 严格遵守
 
 - reference [vue](https://github.com/vuejs/vue/blob/dev/.github/COMMIT_CONVENTION.md) specification ([Angular](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular))
 

@@ -1,10 +1,12 @@
 import { useRouter } from "vue-router"
+import { removeToken } from '../libs/utils'
+import { AxiosError } from "axios"
 
 const LOGIN_PAGE = '/login'
 const router = useRouter()
 
-export function handleStatus(error:any){
-    const status = error.response.status
+export function handleStatus(error:AxiosError){
+    const status =  error?.response?.status
     switch(status) {
         case 400:
             error.message = '请求错误'
@@ -12,12 +14,14 @@ export function handleStatus(error:any){
         case 401:
             error.message = '未登录！'
             router.push(LOGIN_PAGE)
+            //  此处删除token
+            removeToken()
             break
         case 403:
             error.message = '拒绝访问'
             break
         case 404:
-            error.message = `请求地址错误：${error.response.config.url}`
+            error.message = `请求地址错误：${error?.response?.config.url}`
             break
         case 408:
             error.message = '请求超时'
