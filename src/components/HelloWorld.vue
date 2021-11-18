@@ -9,8 +9,8 @@
 
 <script setup lang="ts">
   import { ref } from "vue";
-  import {Button} from "ant-design-vue"
-  const count = ref(0);
+  import { Button } from "ant-design-vue"
+  const count = ref(0)
 </script>
 
 <style scoped>

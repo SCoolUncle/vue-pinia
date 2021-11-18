@@ -1,8 +1,12 @@
-import axios from "axios";
+import axios, { AxiosError, AxiosRequestConfig } from "axios";
+import { message } from 'ant-design-vue'
 import { getToken } from '../libs/utils'
-
+import config from '/@/config'
+import { handleStatus } from './statusHandle'
+import { collectHttpError } from '/@/logics/request-error'
 class HttpRequest {
-    consturctor(baseUrl){
+
+    constructor (baseUrl){
         this.baseUrl = baseUrl
     }
 
@@ -20,17 +24,51 @@ class HttpRequest {
 
     setInterceptors(instance){
         instance.interceptors.request.use(config => {
-            config.headers = {
-                'access-token':getToken(),
-            }
+            config.headers['Authorization'] = getToken()
+            config.headers['access-token'] = getToken()
         },error => {
             return Promise.reject(error)
         })
-
         instance.interceptors.response.use(response => {
-            return response
-        },error => {
-            return Promise.reject(error)
+            // if(response.status % 100 === 2){}
+            const { data } = response.data
+            const { code } = data
+            this.handleCode(code)
+            return data
+        },(error) => {
+            handleStatus(error)
+            collectHttpError(error)
         })
     }
+
+    handleCode(data:any){
+        const {code, msg} = data
+        const rem = code % 100
+        if(rem !== 2) {
+            message.error({
+                content:msg || '接口返回异常！',
+                duration:2
+            })
+        }
+    }
+
+    cancelRequest(options:AxiosRequestConfig,callback){
+        const CancelToken = axios.CancelToken
+        return axios.request({
+            ...options,
+           cancelToken:new CancelToken(function executor(c){
+               callback = c
+           }) 
+        })
+    }
+
+    request (options:AxiosRequestConfig) {
+        const instance = axios.create()
+        options = Object.assign(this.getInsideConfig(), options)
+        this.setInterceptors(instance)
+        return instance(options)
+    }
 }
+
+const http = new HttpRequest(config.baseUrl)
+export default http
