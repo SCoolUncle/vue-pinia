@@ -1,11 +1,15 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from "/@/components/HelloWorld.vue";
+  // This starter template is using Vue 3 <script setup> SFCs
+  // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
+  import { RouterView } from 'vue-router';
+  import { ConfigProvider } from 'ant-design-vue'
+  import Index from '/@/layout/page'
 </script>
 
 <template>
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <ConfigProvider>
+    <RouterView></RouterView>
+  </ConfigProvider>
 </template>
 
 <style>
