@@ -4,19 +4,21 @@ import App from "./App.vue";
 import './design/index.less';
 import '@purge-icons/generated'
 
-import setupRouter from '/@/router'
+import router, {setupRouter} from '/@/router'
 import setupStore from "./store";
 import {handleError} from '/@/logics/error-handle'
 
 async function init() {
   const app = createApp(App)
     
-  setupRouter(app)
-  setupStore(app)
+  setupRouter(app);
+  setupStore(app);
 
-  handleError(app)
+  handleError(app);
 
-  app.mount('#app')
+  await router.isReady();
+
+  app.mount('#app');
 
 }
 

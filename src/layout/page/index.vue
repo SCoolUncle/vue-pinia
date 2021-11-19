@@ -1,13 +1,15 @@
 <template>
-    <a-layout>
-        <a-layout-header>Header</a-layout-header>
-        <a-layout-content>Content</a-layout-content>
-        <a-layout-footer>Footer</a-layout-footer>
-    </a-layout>
+    <Layout>
+        <Button type="primary" danger >sdfd</Button>
+        <div style="width: 1rem; height: 0.64rem; background-color: aquamarine;"></div>
+    </Layout>
 </template>
 
 <script setup lang="ts">
-    import {Layout,LayoutHeader,LayoutContent,LayoutFooter} from 'ant-design-vue'
+    import {
+        Button,
+        Layout
+    } from 'ant-design-vue'
 </script>
 
 <style lang="less" scoped>

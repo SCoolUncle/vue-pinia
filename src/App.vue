@@ -3,12 +3,14 @@
   // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
   import { RouterView } from 'vue-router';
   import { ConfigProvider } from 'ant-design-vue'
-  import Index from '/@/layout/page'
+  import IndexPage from '/@/layout/page/index.vue'
 </script>
 
 <template>
   <ConfigProvider>
-    <RouterView></RouterView>
+    <RouterView>
+      <index-page></index-page>
+    </RouterView>
   </ConfigProvider>
 </template>
 

@@ -1,11 +1,15 @@
+import type { RouteRecordRaw } from 'vue-router'
+
 import  {createRouter, createWebHistory} from 'vue-router'
 import { getToken } from '../utils/libs/utils'
 
-import routes from './routes'
+import routesList from './routes'
 
 const router  = createRouter({
-    history:createWebHistory(),
-    routes
+    history:createWebHistory('/'),
+    routes:(routesList as unknown ) as RouteRecordRaw[],
+    strict:true,
+    scrollBehavior:() => ({left:0,top:0})
 })
 
 const LOGIN_PAGE_NAME = 'login'
@@ -18,6 +22,8 @@ const allowPass = (target:string, pathArr:Array<string>) => {
 }
 
 router.beforeEach((to, from, next):void => {
+    next()
+    console.log(to)
     // 首次加载动画
     // 用户信息相关页面权限
     // 自动登录校验,方案，个人路由 可后端动态返回 2：默认空白提示页显示
@@ -37,7 +43,6 @@ router.beforeEach((to, from, next):void => {
             }
         })
     }
-
 })
 
 router.afterEach(to => {
@@ -48,4 +53,6 @@ const setupRouter = (app) => {
     app.use(router)
 }
 
-export default setupRouter
+export {setupRouter}
+
+export default router

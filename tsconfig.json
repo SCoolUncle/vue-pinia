@@ -13,11 +13,12 @@
     "sourceMap": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
+    // 关掉后有点问题
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "experimentalDecorators": true,
     "lib": ["dom", "esnext"],
-    "types": ["vite/client", "jest"],
+    "types": ["vite/client"],
     "typeRoots": ["./node_modules/@types/", "./types"],
     "noImplicitAny": false,
     "skipLibCheck": true,

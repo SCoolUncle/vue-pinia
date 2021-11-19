@@ -20,3 +20,12 @@ export const getToken = () => {
 export const removeToken  = () => {
     cookies.remove(TOKEN_KEY)
 }
+
+/** 
+ * @description 设备信息
+ * @returns {string} Windows NT 10.0; Win64; x64 | iPhone; CPU iPhone OS 13_2_3 like Mac OS X
+ */
+export const getEquipmentInfo = () => {
+    const baseInfo = navigator.userAgent
+    return baseInfo.slice(baseInfo.indexOf('(') + 1, baseInfo.indexOf(')'))
+}
