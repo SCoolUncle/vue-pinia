@@ -4,6 +4,8 @@ import vue from "@vitejs/plugin-vue";
 import PurgeIcons from 'vite-plugin-purge-icons';
 import path from "path";
 
+import createPlugin from './build/vite'
+
 import {PROXY_LIST} from './src/config/proxyConfig'
 
 function getAbsPath(name:string){
@@ -28,17 +30,7 @@ export default defineConfig({
         }
       ]
     },
-    plugins: [
-      vue(),
-      usePluginImport({
-        libraryName:"ant-design-vue",
-        libraryDirectory:"es",
-        style:true,
-      }),
-      PurgeIcons({
-
-      })
-    ],
+    plugins: createPlugin(true),
     css:{
       preprocessorOptions: {
         less: {

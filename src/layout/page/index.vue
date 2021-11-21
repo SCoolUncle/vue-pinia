@@ -1,7 +1,7 @@
 <template>
     <Layout>
         <Button type="primary" danger >sdfd</Button>
-        <div style="width: 1rem; height: 0.64rem; background-color: aquamarine;"></div>
+        <div style="width: 1rem; height: 1rem; background-color: aquamarine;"></div>
     </Layout>
 </template>
 
