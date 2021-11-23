@@ -23,7 +23,7 @@ const allowPass = (target:string, pathArr:Array<string>) => {
 
 router.beforeEach((to, from, next):void => {
     next()
-    console.log(to)
+    console.log(to,from)
     // 首次加载动画
     // 用户信息相关页面权限
     // 自动登录校验,方案，个人路由 可后端动态返回 2：默认空白提示页显示
@@ -46,7 +46,7 @@ router.beforeEach((to, from, next):void => {
 })
 
 router.afterEach(to => {
-    
+    console.log(to)
 })
 
 const setupRouter = (app) => {

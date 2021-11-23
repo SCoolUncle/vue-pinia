@@ -22,8 +22,8 @@
         color:String
     },
     setup(props) {
-        const isSvgIcon = computed(() => props.icon.includes("|svg"));
-        const getSvgIcon = computed(() => props.icon.replace('|svg', ''));
+        const isSvgIcon = computed(() => props.icon?.includes("|svg"));
+        const getSvgIcon = computed(() => props.icon?.replace('|svg', ''));
 
         const getStyle = computed(() => {
           const { size, color } = props;

@@ -1,15 +1,20 @@
 <template>
-    <Layout>
-        <Button type="primary" danger >sdfd</Button>
-        <div style="width: 1rem; height: 1rem; background-color: aquamarine;"></div>
-    </Layout>
+    <keep-alive v-if="isCache">
+        <RouterView></RouterView>
+    </keep-alive>
+    <RouterView v-else></RouterView>
 </template>
 
 <script setup lang="ts">
-    import {
-        Button,
-        Layout
-    } from 'ant-design-vue'
+  import { RouterView, useRoute } from 'vue-router';
+  import { computed  } from 'vue';
+
+  const router = useRoute()
+  const isCache = computed(() => {
+      console.log(router.meta.isCache)
+    return !!router.meta.isCache;
+  });
+    
 </script>
 
 <style lang="less" scoped>

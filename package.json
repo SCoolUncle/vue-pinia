@@ -44,6 +44,7 @@
     "vite": "^2.6.4",
     "vite-plugin-purge-icons": "^0.7.0",
     "vite-plugin-svg-icons": "^1.0.5",
+    "vite-plugin-theme": "^0.8.1",
     "vue-eslint-parser": "^8.0.1",
     "vue-tsc": "^0.3.0"
   },

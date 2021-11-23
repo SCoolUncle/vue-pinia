@@ -1,10 +1,10 @@
 import http from '/@/utils/axios'
 
-const prefix = '/passion'
+const prefix = '/yai'
 
-export const getUserInfo = (params) => {
+export const login = (params = {}) => {
    return http.request({
-        url:`${prefix}/userinfo`,
+        url:`${prefix}/login`,
         params,
         method:'get'
     })

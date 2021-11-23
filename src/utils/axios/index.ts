@@ -1,11 +1,12 @@
-import axios, { AxiosError, AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import { message } from 'ant-design-vue'
 import { getToken } from '../libs/utils'
 import config from '/@/config'
 import { handleStatus } from './statusHandle'
 import { collectHttpError } from '/@/logics/request-error'
-class HttpRequest {
 
+class HttpRequest {
+    private baseUrl:String
     constructor (baseUrl){
         this.baseUrl = baseUrl
     }
@@ -26,9 +27,11 @@ class HttpRequest {
         instance.interceptors.request.use(config => {
             config.headers['Authorization'] = getToken()
             config.headers['access-token'] = getToken()
+            return config
         },error => {
             return Promise.reject(error)
         })
+
         instance.interceptors.response.use(response => {
             // if(response.status % 100 === 2){}
             const { data } = response.data
@@ -52,12 +55,11 @@ class HttpRequest {
         }
     }
 
-    cancelRequest(options:AxiosRequestConfig,callback){
-        const CancelToken = axios.CancelToken
+    cancelRequest(options:AxiosRequestConfig,that){
         return axios.request({
             ...options,
-           cancelToken:new CancelToken(function executor(c){
-               callback = c
+           cancelToken:new axios.CancelToken(function executor(c){
+               that.cancelHttp = c
            }) 
         })
     }

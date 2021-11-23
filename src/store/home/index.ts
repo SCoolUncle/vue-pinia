@@ -19,5 +19,6 @@ export default{
     state,
     action,
     mutations,
+    getter,
     namespace:true
 }

@@ -27,6 +27,7 @@ export interface RouteMeta {
     hideMenu?: boolean;
     isLink?: boolean;
   }
+// @ts-ignore
 export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'> {
     name: string;
     meta: RouteMeta;

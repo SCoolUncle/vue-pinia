@@ -1,4 +1,4 @@
-import {uploadJavascriptErrorLog} from '/@/api/logs'
+// import {uploadJavascriptErrorLog} from '/@/api/logs'
 
 /** 临时console */
 /** promise */
@@ -18,7 +18,7 @@ function  handleSourceError() {
 /** 常规和异步错误 */
 function  handleSyncError() {
     window.onerror =  function(message, source, lineno, colno, error){
-        console.log(message)
+        console.log(message,source,lineno,colno,error)
     }    
 }
 

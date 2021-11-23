@@ -1,7 +1,5 @@
 import { defineConfig } from "vite";
-import usePluginImport from 'vite-plugin-importer'
-import vue from "@vitejs/plugin-vue";
-import PurgeIcons from 'vite-plugin-purge-icons';
+
 import path from "path";
 
 import createPlugin from './build/vite'

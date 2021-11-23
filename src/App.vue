@@ -3,13 +3,11 @@
   // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
   import { RouterView } from 'vue-router';
   import { ConfigProvider } from 'ant-design-vue'
-  import IndexPage from '/@/layout/page/index.vue'
 </script>
 
 <template>
   <ConfigProvider>
     <RouterView>
-      <index-page></index-page>
     </RouterView>
   </ConfigProvider>
 </template>
@@ -21,6 +19,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

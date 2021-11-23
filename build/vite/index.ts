@@ -3,7 +3,8 @@ import type {Plugin} from 'vite'
 
 import PurgeIcons from 'vite-plugin-purge-icons'
 import usePluginImport from "vite-plugin-importer";
-import {configSvgPlugin} from './svgPlugin'
+import {configSvgPlugin} from './svgPlugin';
+// import { configThemePlugin } from "./theme";
 
 export default function createPlugin(isBuild){
     const plugins:(Plugin | Plugin[])[] | undefined = [
@@ -14,8 +15,9 @@ export default function createPlugin(isBuild){
             libraryDirectory:"es",
             style:true,
         })
-    ]
-    plugins.push( configSvgPlugin(isBuild) )
+    ];
+    plugins.push( configSvgPlugin(isBuild) );
+    // plugins.push(configThemePlugin());
     
     return plugins
 }

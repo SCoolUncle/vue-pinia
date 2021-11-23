@@ -1,7 +1,8 @@
 export const PROXY_LIST = {
-    '/api':{
-        target:'127.0.0.1',
+    '/yai':{
+        target:'http://127.0.0.1:8081',
         changeOrigin:true,
-        rewrite:(path) => path.replace(/\/^api/,'')
+        ws:true,
+        rewrite:(path) => path.replace(/^\/yai/,'/yai')
     }
 }
