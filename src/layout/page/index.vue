@@ -1,8 +1,11 @@
 <template>
     <keep-alive v-if="isCache">
-        <RouterView></RouterView>
+        <transition name="fade">
+            <RouterView></RouterView>
+        </transition>
     </keep-alive>
     <RouterView v-else></RouterView>
+    <div>layout</div>
 </template>
 
 <script setup lang="ts">

@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
+import {requestOptions} from './types'
 import { message } from 'ant-design-vue'
 import { getToken } from '../libs/utils'
 import config from '/@/config'
@@ -16,14 +17,13 @@ class HttpRequest {
             baseURL: this.baseUrl,
             headers: {
             'Content-Type': 'application/json; charset=utf-8',
-            'X-URL-PATH': location.pathname
             },
-            timeout:10000
+            timeout:10000 // 默认10s，不建议重设
         }
         return config
     }
 
-    setInterceptors(instance){
+    setInterceptors(instance,options){
         instance.interceptors.request.use(config => {
             config.headers['Authorization'] = getToken()
             config.headers['access-token'] = getToken()
@@ -34,9 +34,9 @@ class HttpRequest {
 
         instance.interceptors.response.use(response => {
             // if(response.status % 100 === 2){}
-            const { data } = response.data
-            const { code } = data
-            this.handleCode(code)
+            const { data } = response
+            this.handleCode(data,options)
+            // 无论对错都会返回 有null或者undefined的可能，后续再说
             return data
         },(error) => {
             handleStatus(error)
@@ -44,14 +44,20 @@ class HttpRequest {
         })
     }
 
-    handleCode(data:any){
-        const {code, msg} = data
-        const rem = code % 100
-        if(rem !== 2) {
-            message.error({
-                content:msg || '接口返回异常！',
+    // 接口数据返回成功失败是否显示提示
+    handleCode(res:any,options){
+        const {code, msg,data} = res
+        const isSuccess = res && Reflect.has(data,'code') && (code === 0 || code === 200)
+        if(isSuccess && options.showMessage ) {
+            message.success({
+                content:msg || options.showMessage,
                 duration:2
-            })
+            })            
+        }else if(!isSuccess && options.showMessage ){
+            message.error({
+                content:msg || options.showMessage,
+                duration:2
+            })  
         }
     }
 
@@ -64,10 +70,10 @@ class HttpRequest {
         })
     }
 
-    request (options:AxiosRequestConfig) {
+    request (options:AxiosRequestConfig,customs:requestOptions) {
         const instance = axios.create()
         options = Object.assign(this.getInsideConfig(), options)
-        this.setInterceptors(instance)
+        this.setInterceptors(instance,customs)
         return instance(options)
     }
 }

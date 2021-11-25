@@ -1,8 +1,18 @@
 import { RouteRecordRaw } from 'vue-router'
 
 import ErrorPage from '/@/view/error-page/404.vue'
+import Login from '../../view/login/login.vue'
+
 
 const routers:Array<RouteRecordRaw> = [
+    {
+        path: '/loginApp',
+        name:'login-app',
+        component:Login,
+        meta:{
+            title:'login'
+        }
+    },
     
     {
         path: '/401',

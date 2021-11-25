@@ -7,8 +7,10 @@
 
 <template>
   <ConfigProvider>
-    <RouterView>
-    </RouterView>
+    <transition name="fade">
+       <RouterView>
+      </RouterView>
+    </transition>
   </ConfigProvider>
 </template>
 
