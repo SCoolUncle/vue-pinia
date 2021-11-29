@@ -1,7 +1,8 @@
 import http from '/@/utils/axios'
 import type { httpErrorInfo } from './types'
 
-const prefix = '/passion'
+const prefix = '/yai'
+const local = '/local'
 
 export const uploadHttpErrorLog = (params:httpErrorInfo) => {
     return http.request({
@@ -11,10 +12,10 @@ export const uploadHttpErrorLog = (params:httpErrorInfo) => {
     })
 }
 
-export const uploadJavascriptErrorLog = (params) => {
+export const uploadJavascriptErrorLog = (data) => {
     return http.request({
         url:`${prefix}/error/javascriptlog`,
-        params,
-        method:'get'
+        data,
+        method:'post'
     })
 }

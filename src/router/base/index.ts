@@ -6,11 +6,12 @@ import Login from '../../view/login/login.vue'
 
 const routers:Array<RouteRecordRaw> = [
     {
-        path: '/loginApp',
+        path: '/login',
         name:'login-app',
         component:Login,
         meta:{
-            title:'login'
+            title:'login',
+            isCatch:false
         }
     },
     

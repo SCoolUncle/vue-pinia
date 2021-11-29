@@ -50,12 +50,12 @@ class HttpRequest {
         const isSuccess = res && Reflect.has(data,'code') && (code === 0 || code === 200)
         if(isSuccess && options.showMessage ) {
             message.success({
-                content:msg || options.showMessage,
+                content:msg || options?.showMessage,
                 duration:2
             })            
-        }else if(!isSuccess && options.showMessage ){
+        }else if(!isSuccess && options?.showMessage ){
             message.error({
-                content:msg || options.showMessage,
+                content:msg || options?.showMessage,
                 duration:2
             })  
         }
@@ -70,7 +70,7 @@ class HttpRequest {
         })
     }
 
-    request (options:AxiosRequestConfig,customs:requestOptions) {
+    request (options:AxiosRequestConfig,customs?:requestOptions) {
         const instance = axios.create()
         options = Object.assign(this.getInsideConfig(), options)
         this.setInterceptors(instance,customs)

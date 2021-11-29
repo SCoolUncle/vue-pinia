@@ -7,10 +7,11 @@
 
 <template>
   <ConfigProvider>
-    <transition name="fade">
-       <RouterView>
-      </RouterView>
-    </transition>
+    <RouterView v-slot="{Component}">
+      <transition name="fade" mode="out-in">
+        <component :is="Component"/>
+      </transition>
+    </RouterView>
   </ConfigProvider>
 </template>
 

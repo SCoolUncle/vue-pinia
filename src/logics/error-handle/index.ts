@@ -1,24 +1,29 @@
-// import {uploadJavascriptErrorLog} from '/@/api/logs'
+import {uploadJavascriptErrorLog} from '/@/api/logs'
 
 /** 临时console */
 /** promise */
 function  handlePromiseError():void {
-    window.addEventListener('unhandledrejection',(e) => {
-        console.log(e.reason)
+    window.addEventListener('unhandledrejection',(error) => {
+        throw error.reason
     })
 }
 
 /** 资源错误 */
 function  handleSourceError() {
-    window.addEventListener('error',(e) => {
-        console.log(e)
+    window.addEventListener('error',(error) => {
+        throw error
     })    
 }
 
 /** 常规和异步错误 */
 function  handleSyncError() {
     window.onerror =  function(message, source, lineno, colno, error){
-        console.log(message,source,lineno,colno,error)
+        reportErrorMessage(message, source, lineno, colno, error)
+        console.log(message,21)
+        console.log(source,22)
+        console.log(lineno,23)
+        console.log(colno,24)
+        console.log(error)
     }    
 }
 
@@ -37,3 +42,29 @@ export const handleError = (app) => {
     handleSyncError()
     handleVueError(app)
 }
+
+/**
+ * 直接上报，不进行本地存储
+ * 上报参数
+ * path: url
+ * msg: 错误消息
+ * file: 错误文件
+ * line: 错误行
+ * column: 错误列
+ * stack: 错误堆栈
+ */
+async function reportErrorMessage(msg,file,line,column,stack){
+    const params = {
+        pageUrl:window.location.href,
+        msg,
+        file,
+        line,
+        column
+    }
+    try{
+       await uploadJavascriptErrorLog(params)
+    }catch(e){
+        console.log('错误上报接口异常！')
+    }
+}
+
