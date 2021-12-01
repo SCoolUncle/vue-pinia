@@ -1,6 +1,7 @@
 import { useRouter } from "vue-router"
 import { removeToken } from '../libs/utils'
 import { AxiosError } from "axios"
+import { message } from "ant-design-vue"
 
 const LOGIN_PAGE = '/login'
 const router = useRouter()
@@ -13,7 +14,7 @@ export function handleStatus(error:AxiosError){
             break
         case 401:
             error.message = '未登录！'
-            router.push(LOGIN_PAGE)
+            // router.push(LOGIN_PAGE)
             //  此处删除token
             removeToken()
             break
@@ -43,5 +44,9 @@ export function handleStatus(error:AxiosError){
         default:
             break
     }
+    message.error({
+        content:error.message,
+        duration:2,
+    })
     return Promise.reject(error)
 }

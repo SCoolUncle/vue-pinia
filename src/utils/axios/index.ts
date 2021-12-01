@@ -47,17 +47,17 @@ class HttpRequest {
     // 接口数据返回成功失败是否显示提示
     handleCode(res:any,options){
         const {code, msg,data} = res
-        const isSuccess = res && Reflect.has(data,'code') && (code === 0 || code === 200)
-        if(isSuccess && options.showMessage ) {
+        const isSuccess = res && Reflect.has(res,'code') && (code === 0 || code === 200)
+        if(isSuccess && options?.showMessage === 'success' ) {
             message.success({
                 content:msg || options?.showMessage,
                 duration:2
             })            
-        }else if(!isSuccess && options?.showMessage ){
+        }else if(!isSuccess && options?.showMessage === 'error' ){
             message.error({
                 content:msg || options?.showMessage,
                 duration:2
-            })  
+            })
         }
     }
 

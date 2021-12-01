@@ -1,41 +1,28 @@
 <template>
-    <div class="flex items-center justify-center login_page_container" :style="{background:` url(${loginBg}) no-repeat center/cover` }">
-        <div 
-            class="p-8 rounded-md hover:shadow-xl login_box"
-            hoverable
-            :bordered="false"
-        >
-            <div class="login_logo">
-                <!-- <img :src="logo" alt=""> -->
-            </div>
-            <div class="flex justify-between top_tab">
-                <a href="javascript:void()" style="font-size: 1rem;">登录</a>
-                <span>|</span>
-                <a href="javascript:void()">注册</a>
-            </div>   
-            <Form>
-                <FormItem>
-                    <Input>
-                    </Input>
-                </FormItem>
-            </Form>
-        </div>
+    <div class="flex items-center justify-center login_page_container" :style="{background:` url(${loginBg}) no-repeat center/cover` }">           
+        <LoginForm class="login_page_formbox"></LoginForm>            
     </div>
 </template>
 
 <script setup lang="ts">
-    import { Form} from 'ant-design-vue'
-    import loginBg from '/@/assets/background/loginPage/loginbg.jpg'
+    import { reactive } from 'vue';
+    import LoginForm from './components/loginForm.vue';
+
+    import loginBg from '/@/assets/background/loginPage/loginbg.jpg';
+
+    const state = reactive({
+
+    })
     
 </script>
 
-<style lang="less" scoped>
+<style lang="less" >
     @media screen and (max-width: 500px){
         .login_page_container{
             padding:20px;
             .login_box{
                 width:100%;
-                height: 80%;
+                min-height: 80%;
             }
         }
     }
@@ -43,7 +30,8 @@
          .login_page_container{
             .login_box{
                 width:400px;
-                height: 60%;
+                // height: 65%;
+                min-height: 65%;
             }
         }
     }
@@ -52,8 +40,32 @@
         position:absolute;
         height: 100%;
         width: 100%;
+        .login_tab::after{
+            content:'';
+            position: relative;
+            left:calc(50% - 13px);
+            display: block;
+            height: 4px;
+            width:24px;
+            background: #F472B6;
+            border-radius: 5px;
+        }
         .login_box{
             background-color: #ffffff;
+        }
+        .login_form{
+            input::-webkit-input-placeholder {
+                color: #C4B5FD; 
+            } 
+           .ant-input{
+               border:none;
+               border-radius: 50px;
+               line-height: 26px;
+               text-align: center;
+               color:#6D28D9;
+               background-color: #F5F3FF;
+               font-weight: 500;
+           }            
         }
     }
    

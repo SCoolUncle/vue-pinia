@@ -7,10 +7,26 @@ import http from '/@/utils/axios'
 const prefix = '/yai'
 const mockUrl = '/local' // mock数据使用该前缀
 
-export const login = (params = {}) => {
+export const loginin = (data = {}) => {
    return http.request({
         url:`${prefix}/login`,
+        data,
+        method:'post'
+    },{showMessage:'error'})
+}
+
+export const userRegister = (data = {}) => {
+    return http.request({
+        url:`${prefix}/register`,
+        data,
+        method:'post'
+    })
+}
+
+export const getUserInfo = (params = {}) => {
+    return http.request({
+        url:`${prefix}/userinfo`,
         params,
         method:'get'
-    },{showMessage:'message'})
+    })
 }

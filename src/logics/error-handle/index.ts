@@ -18,12 +18,11 @@ function  handleSourceError() {
 /** 常规和异步错误 */
 function  handleSyncError() {
     window.onerror =  function(message, source, lineno, colno, error){
-        reportErrorMessage(message, source, lineno, colno, error)
-        console.log(message,21)
-        console.log(source,22)
-        console.log(lineno,23)
-        console.log(colno,24)
-        console.log(error)
+        try{
+            reportErrorMessage(message, source, lineno, colno, error)
+        }catch(error){
+            console.log(error)
+        }
     }    
 }
 

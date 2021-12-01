@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-   import { computed, defineComponent } from 'vue'
+   import { computed, defineComponent, } from 'vue'
    import SvgIcon from './svgIcon.vue';
    export default defineComponent({
     components: { SvgIcon },
