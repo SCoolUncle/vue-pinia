@@ -30,19 +30,18 @@ router.beforeEach((to, from, next):void => {
     // 登录校验
     const token = getToken()
     const isPass = allowPass(to.path,allowPathArr)
-    if(token){
-        // 判断是否过期
-        next()
-    }else if(isPass){
-        next()
-    }else if(!isPass){
-        next({   
-            name: LOGIN_PAGE_NAME,
-            query: {
-                targetUrl: to.fullPath
-            }
-        })
-    }
+    // if(token){
+    //     next()
+    // }else if(isPass){
+    //     next()
+    // }else if(!isPass){
+    //     next({   
+    //         name: LOGIN_PAGE_NAME,
+    //         query: {
+    //             targetUrl: to.fullPath
+    //         }
+    //     })
+    // }
 })
 
 router.afterEach(to => {

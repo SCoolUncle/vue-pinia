@@ -11,7 +11,7 @@ const routers:Array<RouteRecordRaw> = [
         component:Login,
         meta:{
             title:'login',
-            isCatch:false
+            keepAlive:false
         }
     },
     

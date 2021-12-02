@@ -1,15 +1,23 @@
 import { createStore } from 'vuex'
 
-import home from './home'
+import user from './modules/user'
+import home from './modules/home'
 
 const store = createStore({
     
-  state: {},
-  mutations: {},
+  state: {
+    historyUrl:''
+  },
+  mutations: {
+    setHistoryUrl(state,payload){
+      state.historyUrl = payload
+    }
+  },
   actions: {},
   getters:{},
 
   modules: {
+    user,
     home
   }
 })

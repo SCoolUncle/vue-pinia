@@ -10,10 +10,19 @@ const router:Array<RouteRecordRaw> = [
         meta:{
             title:'home',
             icon:'sd', // 自定义
-            isCache:false // 是否缓存改页面
+            keepAlive:false // 是否缓存改页面
         },
         children:[
-           
+            {
+                path:'/',
+                name:'index',
+                component:() => import('/@/view/home/index.vue'),
+                meta:{
+                    title:'home',
+                    icon:'sd', // 自定义
+                    keepAlive:false // 是否缓存改页面
+                },
+            }
         ]
     }
 ]

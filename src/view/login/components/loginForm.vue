@@ -71,15 +71,19 @@
 
     import {Icon} from '/@/components';
     import { Form, Input, message } from 'ant-design-vue';
-    import { loginin } from '/@/api/base';
+    import { useStore } from 'vuex';
+    import { useRoute, useRouter } from 'vue-router';
+    import { getToken } from '/@/utils/libs/utils';
+
+    const namespace = 'user'
 
     interface formType {
         userName:string,
         password:string,
         checkPassword?:string
     }
-
-     const checkPwd = async (_rule:RuleObject, value:any) => {
+    
+    const checkPwd = async (_rule:RuleObject, value:any) => {
         if(value === ''){
             return Promise.reject('请再次输入密码！')
         };
@@ -91,8 +95,11 @@
         };
     }
     
+    const router = useRouter()
+    const route = useRoute()
     const loginForm = ref()
     const registerForm = ref()
+    const store = useStore()
     
     const state = reactive({
         isLogin:true
@@ -115,10 +122,12 @@
     async function login(){
         delete formData.checkPassword
         loginForm.value.validate().then(() => {
-            loginin({...formData})
+           store.dispatch('handleLogin',{...formData})
+           if(getToken()) router.push('/')
         }).catch(() => {
             message.error('信息填写有误！')
-        })
+        })        
+
     };
     function register(){
 

@@ -35,9 +35,9 @@ class HttpRequest {
         instance.interceptors.response.use(response => {
             // if(response.status % 100 === 2){}
             const { data } = response
-            this.handleCode(data,options)
+            return this.handleCode(data,options)
             // 无论对错都会返回 有null或者undefined的可能，后续再说
-            return data
+            // return data
         },(error) => {
             handleStatus(error)
             collectHttpError(error)
@@ -48,16 +48,22 @@ class HttpRequest {
     handleCode(res:any,options){
         const {code, msg,data} = res
         const isSuccess = res && Reflect.has(res,'code') && (code === 0 || code === 200)
-        if(isSuccess && options?.showMessage === 'success' ) {
-            message.success({
-                content:msg || options?.showMessage,
-                duration:2
-            })            
-        }else if(!isSuccess && options?.showMessage === 'error' ){
-            message.error({
-                content:msg || options?.showMessage,
-                duration:2
-            })
+        if(isSuccess) {
+            if(options?.showMessage === 'success'){
+                message.success({
+                    content:msg || options?.showMessage,
+                    duration:2
+                })   
+            }
+            return res          
+        }else if(!isSuccess ){
+            if(options?.showMessage === 'error'){
+                message.error({
+                    content:msg || options?.showMessage,
+                    duration:2
+                })
+            }
+            return Promise.reject(res)
         }
     }
 

@@ -2,15 +2,18 @@
   // This starter template is using Vue 3 <script setup> SFCs
   // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
   import { RouterView } from 'vue-router';
-  import { ConfigProvider } from 'ant-design-vue'
+  import { ConfigProvider } from 'ant-design-vue';
+
+  import {setupProvideState,setupProvideActions} from '/@/store/provide/index'
+
+  setupProvideState()
+  setupProvideActions()
+
 </script>
 
 <template>
   <ConfigProvider>
-    <RouterView v-slot="{Component}">
-      <transition name="fade" mode="out-in">
-        <component :is="Component"/>
-      </transition>
+    <RouterView >
     </RouterView>
   </ConfigProvider>
 </template>

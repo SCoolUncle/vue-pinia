@@ -1,3 +1,5 @@
+import router from '/@/router'
+import { message } from 'ant-design-vue'
 import { loginin } from '/@/api/base'
 import { setToken, getToken } from '/@/utils/libs/utils'
 export default {
@@ -17,14 +19,12 @@ export default {
         },
     },
 
-    action:{
-        handleLogin({commit}, payload){
-            return new Promise((resolve,reject) => {
-                loginin(payload).then(res => {  
-                    const data = res.data
-                    commit('setToken',data.userToken)
-                })
-            })
+    actions:{
+        async handleLogin({commit}, payload){
+            const { data } = await loginin(payload)
+            commit('setToken',data.userToken)
+            commit('setBaseUserInfo',data.userInfo)
+            return data.userInfo
         }
     },
 

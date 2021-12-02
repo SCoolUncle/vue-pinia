@@ -1,17 +1,24 @@
 <template>
-    <div class="flex items-center justify-center login_page_container" :style="{background:` url(${loginBg}) no-repeat center/cover` }">           
-        <LoginForm class="login_page_formbox"></LoginForm>            
+    <div class="flex items-center justify-center login_page_container" :style="{background:` url(${loginBg}) no-repeat center/cover` }"> 
+        <transition name="fade" >
+            <LoginForm v-show="isload"></LoginForm> 
+        </transition>
     </div>
 </template>
 
 <script setup lang="ts">
-    import { reactive } from 'vue';
+    import { onMounted, reactive,ref } from 'vue';
     import LoginForm from './components/loginForm.vue';
 
     import loginBg from '/@/assets/background/loginPage/loginbg.jpg';
 
+    let isload = ref(false);
     const state = reactive({
 
+    });
+
+    onMounted(() => {
+        isload.value = true
     })
     
 </script>
@@ -67,6 +74,12 @@
                font-weight: 500;
            }            
         }
+    }
+    .fade-enter-active, .fade-leave-active{
+        transition: opacity 3s;                             
+    }
+    .fade-enter, .fade-leave-to {           
+        opacity: 0;
     }
    
 </style>
