@@ -1,7 +1,6 @@
-
-import { AxiosError } from 'axios'
+import { AxiosError } from 'axios';
 // import {uploadHttpErrorLog} from '/@/api/logs'
 
-export const collectHttpError = (error:AxiosError) => {
-    console.log(error)
-}
+export const collectHttpError = (error: AxiosError) => {
+  console.log(error);
+};

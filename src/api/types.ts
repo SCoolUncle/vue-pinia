@@ -1,5 +1,4 @@
-
 export interface httpErrorInfo {
-    url?:string
-    timestamp?:number
+  url?: string;
+  timestamp?: number;
 }

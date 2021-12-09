@@ -1,28 +1,28 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
 
-import user from './modules/user'
-import home from './modules/home'
+import user from './modules/user';
+import home from './modules/home';
 
 const store = createStore({
-    
   state: {
-    historyUrl:''
+    historyUrl: '',
   },
   mutations: {
-    setHistoryUrl(state,payload){
-      state.historyUrl = payload
-    }
+    setHistoryUrl(state, payload) {
+      state.historyUrl = payload;
+    },
   },
   actions: {},
-  getters:{},
+  getters: {},
 
   modules: {
     user,
-    home
-  }
-})
+    home,
+  },
+});
 
 const setupStore = (app) => {
-    app.use(store)
-}
-export default setupStore
+  app.use(store);
+};
+
+export { store, setupStore };

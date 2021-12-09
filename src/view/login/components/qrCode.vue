@@ -1,14 +1,8 @@
-<template>
-    
-</template>
+<template> </template>
 
 <script lang="ts" setup>
-    import {} from 'vue'
-    import { Icon } from '/@/components';
-
-
+  import {} from 'vue';
+  import { Icon } from '/@/components';
 </script>
 
-<style lang="less" scoped>
-    
-</style>
+<style lang="less" scoped></style>

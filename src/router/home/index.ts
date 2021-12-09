@@ -1,30 +1,38 @@
-import { RouteRecordRaw } from 'vue-router'
-import IndexPage from '/@/layout/page/index.vue'
+import { RouteRecordRaw } from 'vue-router';
+import IndexPage from '/@/layout/page/index.vue';
 
-
-const router:Array<RouteRecordRaw> = [
-    {
-        path:'/',
-        name:'index',
-        component:IndexPage,
-        meta:{
-            title:'home',
-            icon:'sd', // 自定义
-            keepAlive:false // 是否缓存改页面
+const router: Array<RouteRecordRaw> = [
+  {
+    path: '/',
+    name: 'index',
+    component: IndexPage,
+    meta: {
+      title: 'home',
+      icon: 'sd', // 自定义
+      keepAlive: false, // 是否缓存改页面
+    },
+    children: [
+      {
+        path: '/',
+        name: 'index',
+        component: () => import('/@/view/home/index.vue'),
+        meta: {
+          title: 'home',
+          icon: 'sd', // 自定义
+          keepAlive: false, // 是否缓存改页面
         },
-        children:[
-            {
-                path:'/',
-                name:'index',
-                component:() => import('/@/view/home/index.vue'),
-                meta:{
-                    title:'home',
-                    icon:'sd', // 自定义
-                    keepAlive:false // 是否缓存改页面
-                },
-            }
-        ]
-    }
-]
+      },
+      {
+        path: '/myself',
+        name: 'myself',
+        component: () => import('/@/view/pages/myself/index.vue'),
+        meta: {
+          title: 'home',
+          icon: 'sd', // 自定义
+        },
+      },
+    ],
+  },
+];
 
-export default router
+export default router;

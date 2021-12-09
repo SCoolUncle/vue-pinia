@@ -1,4 +1,4 @@
-export default{
-    cookieExpires: '7d',
-    baseUrl:'/',
-}
+export default {
+  cookieExpires: '7d',
+  baseUrl: '/',
+};

@@ -1,4 +1,3 @@
-
 // 成功后的返回
 export function resultSuccess(data, { msg = 'ok' } = {}) {
   return {
@@ -14,7 +13,7 @@ export function resultPageSuccess<T = any>(
   page: number,
   pageSize: number,
   list: T[],
-  { msg = 'success' } = {}
+  { msg = 'success' } = {},
 ) {
   const pageData = pagination(page, pageSize, list);
   return {

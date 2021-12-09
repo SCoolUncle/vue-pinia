@@ -1,7 +1,4 @@
-import Home from '/@/router/home'
-import Base from '/@/router/base'
+import Home from '/@/router/home';
+import Base from '/@/router/base';
 
-export default [
-    ...Home,
-    ...Base
-]
+export default [...Home, ...Base];

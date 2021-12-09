@@ -1,26 +1,21 @@
+const state = {
+  homeName: '',
+};
 
-const state  = {
-    homeName:''
-}
-
-const mutations = {
-
-}
+const mutations = {};
 
 const actions = {
-    getHomeName:() => {
-        return state.homeName
-    }
-}
+  getHomeName: () => {
+    return state.homeName;
+  },
+};
 
-const getter = {
+const getter = {};
 
-}
-
-export default{
-    state,
-    actions,
-    mutations,
-    getter,
-    namespaced:true
-}
+export default {
+  state,
+  actions,
+  mutations,
+  getter,
+  namespaced: true,
+};

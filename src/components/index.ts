@@ -1,5 +1,3 @@
-import Oicon from './icon/index.vue'
+import Oicon from './icon/index.vue';
 
-export {
-    Oicon
-}
+export { Oicon };

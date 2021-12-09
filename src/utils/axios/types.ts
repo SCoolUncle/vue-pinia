@@ -1,5 +1,5 @@
-import { AxiosRequestConfig } from "axios";
+import { AxiosRequestConfig } from 'axios';
 
-export interface requestOptions extends AxiosRequestConfig{
-    showMessage?: String
+export interface requestOptions extends AxiosRequestConfig {
+  showMessage?: String;
 }
