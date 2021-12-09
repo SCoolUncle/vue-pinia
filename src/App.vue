@@ -23,7 +23,7 @@
 
 <template>
   <ConfigProvider>
-    <RouterView> </RouterView>
+    <RouterView > </RouterView>
   </ConfigProvider>
 </template>
 

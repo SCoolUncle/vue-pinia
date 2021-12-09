@@ -23,7 +23,8 @@ body {
   height: 100%;
   overflow: visible !important;
   overflow-x: hidden !important;
-
+  -webkit-overflow-scrolling:touch ;
+  
   &.color-weak {
     filter: invert(80%);
   }
@@ -48,6 +49,8 @@ ul li {
   padding: 0px;
   margin: 0px;
 }
+
+
 
 @media screen and (max-width: 1920) {
   html {
@@ -74,6 +77,8 @@ ul li {
 @media screen and (min-width: 320px) and (max-width: 480px) {
   html {
     font-size: 16px;
+  }
+  body{
   }
 }
 /* 平板之类的宽度 1024 以下设备 */

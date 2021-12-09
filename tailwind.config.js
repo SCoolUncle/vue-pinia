@@ -5,7 +5,11 @@ module.exports = {
     extend: {},
     fontFamily:{
       sans: ['Graphik', 'sans-serif'],
-    }
+    },
+    container: {
+      padding: {
+      },
+    },
   },
   variants: {
     extend: {},

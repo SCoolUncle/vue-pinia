@@ -110,7 +110,7 @@
 </template>
 <script setup lang="ts">
   import { RuleObject } from 'ant-design-vue/lib/form/interface';
-  import logo from '/@/assets/images/logobg.jpg';
+  import logo from '/@/assets/images/logo.png';
   import { reactive, ref, unref } from 'vue';
 
   import { Oicon } from '/@/components';
