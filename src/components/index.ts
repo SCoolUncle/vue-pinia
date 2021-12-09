@@ -1,5 +1,5 @@
-import Icon from './icon/index.vue'
+import Oicon from './icon/index.vue'
 
 export {
-    Icon
+    Oicon
 }

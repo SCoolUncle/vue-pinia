@@ -1,7 +1,6 @@
 <template>
     <SvgIcon v-if="isSvgIcon" :class="[$attrs.class]" :name="getSvgIcon"></SvgIcon>
-
-    <span v-else :class="[$attrs.class, 'iconify anticon']" :data-icon="icon" :style="getStyle"></span>
+    <span v-else :class="[$attrs.class, 'iconify']" :data-icon="icon" :style="getStyle"></span>
 </template>
 
 <script lang="ts">

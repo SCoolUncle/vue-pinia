@@ -23,6 +23,14 @@ export const userRegister = (data = {}) => {
     })
 }
 
+export const recodeLoginStatus = (params = {}) => {
+    return http.request({
+        url:`${prefix}/register`,
+        params,
+        method:'get'
+    })
+}
+
 export const getUserInfo = (params = {}) => {
     return http.request({
         url:`${prefix}/userinfo`,

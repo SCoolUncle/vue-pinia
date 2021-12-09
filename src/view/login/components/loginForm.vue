@@ -56,9 +56,9 @@
             <p class="cursor-pointer">忘记密码？</p>
             <p>----------------- or -----------------</p>
             <div class="flex justify-around text-3xl text-purple-200">
-                <Icon class="cursor-pointer hover:text-purple-400" icon="ant-design:qq-circle-filled" size="32"></Icon>
-                <Icon class="cursor-pointer hover:text-purple-400" icon="ant-design:wechat-outlined" size="32"></Icon>
-                <Icon class="cursor-pointer hover:text-purple-400" icon="ri:alipay-fill" size="32"></Icon>
+                <span @click="appLogin('qq')"><Oicon class="cursor-pointer hover:text-purple-400" icon="ant-design:qq-circle-filled" size="32" ></Oicon></span>
+                <span @click="appLogin('wx')"><Oicon class="cursor-pointer hover:text-purple-400" icon="ant-design:wechat-outlined" size="32" ></Oicon></span>
+                <span @click="appLogin('alipay')"><Oicon class="cursor-pointer hover:text-purple-400" icon="ri:alipay-fill" size="32" ></Oicon></span>
             </div>
         </div>
     </div>
@@ -69,7 +69,7 @@
     import logo from '/@/assets/images/logobg.jpg';
     import { reactive ,ref} from 'vue';
 
-    import {Icon} from '/@/components';
+    import {Oicon} from '/@/components';
     import { Form, Input, message } from 'ant-design-vue';
     import { useStore } from 'vuex';
     import { useRoute, useRouter } from 'vue-router';
@@ -127,11 +127,20 @@
         }).catch(() => {
             message.error('信息填写有误！')
         })        
-
     };
     function register(){
-
+        registerForm.value.validate().then(() => {
+            store.dispatch('handleRegister',{...formData})
+            if(getToken()) {
+                router.push('/')
+            }
+        })
     };
+
+    function appLogin(name){
+        message.error('小雅正在努力实现！')
+        return name
+    }
 
     function loginHandle(){
         state.isLogin = true

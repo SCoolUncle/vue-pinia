@@ -1,6 +1,6 @@
 <template>
     <div class="flex items-center justify-center login_page_container" :style="{background:` url(${loginBg}) no-repeat center/cover` }"> 
-        <transition name="fade" >
+        <transition name="loginfade" mode="out-in" >
             <LoginForm v-show="isload"></LoginForm> 
         </transition>
     </div>
@@ -23,7 +23,7 @@
     
 </script>
 
-<style lang="less" >
+<style lang="less">
     @media screen and (max-width: 500px){
         .login_page_container{
             padding:20px;
@@ -75,11 +75,10 @@
            }            
         }
     }
-    .fade-enter-active, .fade-leave-active{
-        transition: opacity 3s;                             
+    .loginfade-enter-active, .loginfade-leave-active{
+        transition: all 1s ease-out;
     }
-    .fade-enter, .fade-leave-to {           
+    .loginfade-enter-from {           
         opacity: 0;
-    }
-   
+    }   
 </style>

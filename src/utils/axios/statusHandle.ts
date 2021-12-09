@@ -14,7 +14,7 @@ export function handleStatus(error:AxiosError){
             break
         case 401:
             error.message = '未登录！'
-            // router.push(LOGIN_PAGE)
+            router.push(LOGIN_PAGE)
             //  此处删除token
             removeToken()
             break

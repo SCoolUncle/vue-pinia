@@ -1,6 +1,6 @@
 import router from '/@/router'
 import { message } from 'ant-design-vue'
-import { loginin } from '/@/api/base'
+import { loginin, userRegister } from '/@/api/base'
 import { setToken, getToken } from '/@/utils/libs/utils'
 export default {
 
@@ -22,6 +22,12 @@ export default {
     actions:{
         async handleLogin({commit}, payload){
             const { data } = await loginin(payload)
+            commit('setToken',data.userToken)
+            commit('setBaseUserInfo',data.userInfo)
+            return data.userInfo
+        },
+        async handleRegister({commit}, payload){
+            const {data} = await userRegister(payload)
             commit('setToken',data.userToken)
             commit('setBaseUserInfo',data.userInfo)
             return data.userInfo
