@@ -90,19 +90,19 @@
       <p>----------------- or -----------------</p>
       <div class="flex justify-around text-3xl text-purple-200">
         <span @click="appLogin('qq')"
-          ><Oicon
+          ><Icon
             class="cursor-pointer hover:text-purple-400"
             icon="ant-design:qq-circle-filled"
             size="32"
         /></span>
         <span @click="appLogin('wx')"
-          ><Oicon
+          ><Icon
             class="cursor-pointer hover:text-purple-400"
             icon="ant-design:wechat-outlined"
             size="32"
         /></span>
         <span @click="appLogin('alipay')"
-          ><Oicon class="cursor-pointer hover:text-purple-400" icon="ri:alipay-fill" size="32"
+          ><Icon class="cursor-pointer hover:text-purple-400" icon="ri:alipay-fill" size="32"
         /></span>
       </div>
     </div>
@@ -113,7 +113,7 @@
   import logo from '/@/assets/images/logo.png';
   import { reactive, ref, unref } from 'vue';
 
-  import { Oicon } from '/@/components';
+  import { Icon } from '/@/components';
   import { Form, Input, message } from 'ant-design-vue';
   import { useStore } from 'vuex';
   import { useRoute, useRouter } from 'vue-router';

@@ -1,3 +1,3 @@
-import Oicon from './icon/index.vue';
+import Icon from './icon/index.vue';
 
-export { Oicon };
+export { Icon };

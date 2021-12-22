@@ -1,5 +1,5 @@
 <template>
-  <SvgIcon v-if="isSvgIcon" :class="[$attrs.class]" :name="getSvgIcon" />
+  <SvgIcon v-if="isSvgIcon" :class="[$attrs.class]" :name="getSvgIcon" :size="size" />
   <span v-else :class="[$attrs.class, 'iconify']" :data-icon="icon" :style="getStyle"></span>
 </template>
 

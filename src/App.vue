@@ -5,25 +5,17 @@
   import { onMounted, onBeforeUnmount, onUnmounted } from 'vue';
   import { ConfigProvider } from 'ant-design-vue';
 
-  import {setupProvideState,setupProvideActions} from '/@/store/provide/index'
+  import { setupProvideState, setupProvideActions } from '/@/store/provide/index';
 
-  setupProvideState()
-  setupProvideActions()
+  setupProvideState();
+  setupProvideActions();
 
-  onMounted(() => {
-
-  }),
-  onBeforeUnmount(() => {
-
-  }),
-  onUnmounted(() => {
-
-  })
+  onMounted(() => {}), onBeforeUnmount(() => {}), onUnmounted(() => {});
 </script>
 
 <template>
   <ConfigProvider>
-    <RouterView > </RouterView>
+    <RouterView />
   </ConfigProvider>
 </template>
 
@@ -36,5 +28,7 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    height: 100%;
+    width: 100%;
   }
 </style>
