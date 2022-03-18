@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { requestOptions } from './types';
+import { requestOptions, UploadFileParams } from './types';
 import { message } from 'ant-design-vue';
 import { getToken } from '../libs/utils';
 import config from '/@/config';
@@ -61,7 +61,7 @@ class HttpRequest {
           duration: 2,
         });
       }
-      return res;
+      return data;
     } else if (!isSuccess) {
       if (options?.showMessage === 'error') {
         message.error({
@@ -87,6 +87,33 @@ class HttpRequest {
     options = Object.assign(this.getInsideConfig(), options);
     this.setInterceptors(instance, customs);
     return instance(options);
+  }
+
+  uploadFile(options: AxiosRequestConfig, params: UploadFileParams) {
+    const formData = new window.FormData();
+    // 多文件有点问题貌似
+    if (params.data) {
+      Object.keys(params.data).forEach((key) => {
+        if (!params.data) return;
+        const item = params.data[key];
+        if (Array.isArray(item)) {
+          item.forEach((val) => {
+            formData.append(`${key}[]`, val);
+          });
+          return;
+        }
+        formData.append(key, params.data[key]);
+      });
+    }
+    formData.append(params.name || 'file', params.file, params.filename);
+    return this.request({
+      ...options,
+      method: 'post',
+      data: formData,
+      headers: {
+        'Content-type': 'multipart/form-data;charset=UTF-8',
+      },
+    });
   }
 }
 

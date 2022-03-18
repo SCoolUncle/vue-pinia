@@ -9,6 +9,7 @@ const demoList = (() => {
       beginTime: '@datetime',
       endTime: '@datetime',
       address: '@city()',
+      avatar: 'https://joeschmoe.io/api/v1/random',
       name: '@cname()',
       name1: '@cname()',
       name2: '@cname()',
@@ -31,7 +32,7 @@ export default [
     timeout: 100,
     method: 'get',
     response: ({ query }) => {
-      const { page = 1, pageSize = 20 } = query;
+      const { page = 1, pageSize = 10 } = query;
       return resultPageSuccess(page, pageSize, demoList);
     },
   },

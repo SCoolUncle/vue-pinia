@@ -7,9 +7,9 @@ import { store } from '/@/store';
 import { getToken } from '../utils/libs/utils';
 
 import routesList from './routes';
-
+const baseUrl = window.__POWERED_BY_QIANKUN__ ? '/vueweb' : '/';
 const router = createRouter({
-  history: createWebHistory('/'),
+  history: createWebHistory(baseUrl),
   routes: routesList as unknown as RouteRecordRaw[],
   strict: true,
   scrollBehavior: () => ({ left: 0, top: 0 }),
