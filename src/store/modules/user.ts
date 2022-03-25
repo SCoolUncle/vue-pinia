@@ -21,19 +21,19 @@ export default {
 
   actions: {
     async handleLogin({ commit }, payload) {
-      const { data } = await loginin(payload);
-      commit('setToken', data.userToken);
-      commit('setBaseUserInfo', data.userInfo);
+      const { userToken, userInfo } = await loginin(payload);
+      commit('setToken', userToken);
+      commit('setBaseUserInfo', userInfo);
     },
     async handleRegister({ commit }, payload) {
-      const { data } = await userRegister(payload);
-      commit('setToken', data.userToken);
-      commit('setBaseUserInfo', data.userInfo);
-      return data.userInfo;
+      const { userToken, userInfo } = await userRegister(payload);
+      commit('setToken', userToken);
+      commit('setBaseUserInfo', userInfo);
+      return userInfo;
     },
     async getUserInfo({ commit }, payload) {
-      const { data } = await getUserInfo(payload);
-      commit('setBaseUserInfo', data.userInfo);
+      const { userInfo } = await getUserInfo(payload);
+      commit('setBaseUserInfo', userInfo);
     },
   },
 

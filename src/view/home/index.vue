@@ -26,20 +26,18 @@
     const scrollTop = document.body.scrollTop;
     const clientHeight = document.body.clientHeight;
     const scrollHeight = document.body.scrollHeight;
-    console.log(clientHeight, scrollTop, scrollHeight);
   }
 
   function getElementPosition() {
     const docTop = buttonEle.value.getBoundingClientRect().top;
     const docIsShow = document.documentElement.clientHeight - docTop > 0;
-    console.log(docTop, docIsShow);
   }
 
-  async function getData() {
-    const params = { page: 1, pageSize: 20 };
+  async function getData(callBack = () => {}) {
+    const params = { page: 1, pageSize: 10 };
     const { list } = await getMenuList(params);
-    console.log('111111', list);
     state.cardList = state.cardList.concat(list);
+    if (state.cardList.length > 30) callBack();
   }
 
   async function handleMore() {

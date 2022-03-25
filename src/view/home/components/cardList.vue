@@ -1,24 +1,42 @@
 <template>
   <transition-group name="imglist" @before-enter="beforEnter" @enter="enter">
-    <div v-for="(item, index) in cardList" :key="item.id">
+    <div
+      class="img-container"
+      v-for="(item, index) in cardList"
+      :data-index="index % state.addNumber"
+      :key="item.id"
+    >
       <div class="mt-2 mb-2 shadow-md card-list">
         <div class="img-box">
           <img
-            src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+            src=""
             alt="图片缺失"
-            style="width: 100%"
+            style="width: 100%; height: 100%"
+            setsrc="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
           />
         </div>
-        <div class="content-box">
+        <div class="content-box" v-if="cardList?.length">
           <p>{{ item.name }}</p>
         </div>
       </div>
     </div>
   </transition-group>
-  <div class="load-index" ref="bottomMark"></div>
+  <Button type="primary" @click="goWebTop">回到顶部</Button>
+  <div class="load-index" ref="bottomMark"> </div>
 </template>
 <script lang="ts" setup>
-  import { ref, reactive, defineProps, defineEmits, computed, onMounted, watch } from 'vue';
+  import {
+    ref,
+    reactive,
+    defineProps,
+    defineEmits,
+    computed,
+    onMounted,
+    onUpdated,
+    watch,
+  } from 'vue';
+  import { Button } from 'ant-design-vue';
+  import { createIntersectionListen } from '/@/utils/libs/utils';
 
   const props = defineProps({
     list: Array,
@@ -31,9 +49,9 @@
   const bottomMark = ref();
 
   const state = reactive({
-    showCard: false,
     cardOldLength: cardList.value?.length,
     renderIndex: 1,
+    // 每次加载卡片的数量
     addNumber: 0,
   });
 
@@ -45,29 +63,50 @@
     // 需要获取新添加的数量来确定延迟时间
     if (state.renderIndex < state.addNumber) state.renderIndex++;
     state.cardOldLength = cardList.value?.length;
-    let delay = el.dataset.index * 100;
+    let delay = Number(el.dataset.index) * 100;
     setTimeout(() => {
-      el.style.animation = 'cardin 0.5s ease-in 0.5s 1';
       el.style.opacity = 1;
+      el.style.transition = 'opacity 1s';
+      el.style.animation = 'cardin 1s ease-in 0.5s infinite normal running';
       done();
     }, delay);
   }
 
-  const eleAddListener: (currentEle: Element, targetEle: Element | null, size: number) => void =
-    function (currentEle, targetEle = null, size = 1) {
-      let ioInstance: any = null;
-      return function () {
-        ioInstance = new IntersectionObserver(handleIntersection, {
-          root: targetEle || null,
-          threshold: size,
+  async function bindIntersectionEvent() {
+    const intance = createIntersectionListen(null, 1, (entries) => {
+      // 非底部不加载
+      const isLast = entries[0].boundingClientRect.y === entries[0].rootBounds.height;
+      if (entries[0].isIntersecting && isLast) {
+        emits('change', () => {
+          intance.unobserve(bottomMark.value);
+          bottomMark.value.innerHTML = '没有更多数据了';
         });
-        ioInstance.observe(currentEle);
-        ioInstance.unobserve(currentEle);
-      };
-    };
+      }
+    });
+    intance.observe(bottomMark.value);
+  }
 
-  function handleIntersection(entries, observer) {
-    console.log(entries, observer);
+  async function bindImg() {
+    const imgEllist = document.querySelectorAll('img[setsrc]');
+    const int = createIntersectionListen(null, 0, (entries, observe) => {
+      console.log(entries);
+      entries.forEach((item) => {
+        let imgEle = item.target;
+        if (item.isIntersecting) {
+          imgEle.src = imgEle.getAttribute('setsrc');
+          observe.unobserve(imgEle);
+          imgEle.removeAttribute('setsrc');
+        }
+      });
+    });
+    imgEllist.forEach((item) => {
+      int.observe(item);
+    });
+  }
+
+  function goWebTop() {
+    console.log(document.body.scrollTop);
+    document.body.scrollTo({ top: 10, behavior: 'smooth' });
   }
 
   watch(
@@ -77,13 +116,18 @@
     },
   );
 
-  onMounted(() => {
-    eleAddListener();
-    state.showCard = !state.showCard;
+  onUpdated(async () => {
+    bindImg();
+  });
+
+  onMounted(async () => {
+    bindIntersectionEvent();
+    bindImg();
   });
 </script>
 <style lang="less" scoped>
   .card-list {
+    min-height: 200px;
     .img-box {
       display: flex;
       width: 100%;
