@@ -11,6 +11,7 @@ function handlePromiseError(): void {
 /** 资源错误 */
 function handleSourceError() {
   window.addEventListener('error', (error) => {
+    console.log('资源错误', error);
     throw error;
   });
 }

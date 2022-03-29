@@ -11,7 +11,7 @@
           <img
             src=""
             alt="图片缺失"
-            style="width: 100%; height: 100%"
+            style="width: 100%; height: 100%; object-fit: cover"
             setsrc="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
           />
         </div>

@@ -2,7 +2,12 @@
 <html lang="zh-CN" id="htmlRoot">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      window.pageStartTime = Date.now();
+      performance.mark('pageStartTime')
+    </script>
     <link rel="icon" href="/favicon.ico" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com/">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:100,300,400,500,700,900">
     <meta name=App-Config content="fullscreen=yes,useHistoryState=yes,transition=yes">
     <meta content=yes name=apple-mobile-web-app-capable>
@@ -11,7 +16,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
     <title>YouAndI</title>
     <script>
-     
+      window.firstPaint = Date.now();
+      performance.mark('firstPaint')
+      console.log(performance.getEntriesByName('pageStartTime'),performance.getEntriesByName('firstPaint'))
+      console.log('网页白屏时间（ms）：',window.firstPaint - window.pageStartTime)
     </script>
   </head>
   <body>
@@ -37,5 +45,6 @@
       </style>
     </div>
     <script type="module" src="/src/main.ts"></script>
+    
   </body>
 </html>
