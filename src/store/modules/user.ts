@@ -1,7 +1,7 @@
 import router from '/@/router';
 import { message } from 'ant-design-vue';
 import { getUserInfo, loginin, userRegister } from '/@/api/base';
-import { setToken, getToken } from '/@/utils/libs/utils';
+import { setToken, getToken } from '../../utils/tool/utils';
 import { reject } from 'lodash';
 export default {
   state: {

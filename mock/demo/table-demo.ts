@@ -1,5 +1,5 @@
 import { MockMethod } from 'vite-plugin-mock';
-import { resultPageSuccess } from '../_util';
+import { resultPageSuccess, resultError } from '../_util';
 
 const demoList = (() => {
   const result: any[] = [];
@@ -34,6 +34,15 @@ export default [
     response: ({ query }) => {
       const { page = 1, pageSize = 10 } = query;
       return resultPageSuccess(page, pageSize, demoList);
+    },
+  },
+  {
+    url: '/local/table/getDemoListError',
+    timeout: 100,
+    method: 'get',
+    response: ({ query }) => {
+      const {} = query;
+      return resultError();
     },
   },
 ] as MockMethod[];

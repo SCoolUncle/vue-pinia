@@ -1,5 +1,5 @@
 import { useRouter } from 'vue-router';
-import { removeToken } from '../libs/utils';
+import { removeToken } from '../tool/utils';
 import { AxiosError } from 'axios';
 import { message } from 'ant-design-vue';
 

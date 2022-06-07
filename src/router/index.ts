@@ -4,7 +4,7 @@ import moment from 'moment';
 
 import { createRouter, createWebHistory } from 'vue-router';
 import { store } from '/@/store';
-import { getToken } from '../utils/libs/utils';
+import { getToken } from '../utils/tool/utils';
 
 import routesList from './routes';
 const baseUrl = window.__POWERED_BY_QIANKUN__ ? '/vueweb' : '/';

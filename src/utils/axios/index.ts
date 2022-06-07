@@ -1,10 +1,10 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { requestOptions, UploadFileParams } from './types';
 import { message } from 'ant-design-vue';
-import { getToken } from '../libs/utils';
+import { getToken } from '../tool/utils';
 import config from '/@/config';
 import { handleStatus } from './statusHandle';
-import { collectHttpError } from '/@/logics/request-error';
+import { collectHttpError } from '../../logics/error-send';
 
 class HttpRequest {
   private baseUrl: String;
@@ -45,6 +45,8 @@ class HttpRequest {
       },
       (error) => {
         handleStatus(error);
+        console.log(error);
+
         collectHttpError(error);
       },
     );

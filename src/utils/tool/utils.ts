@@ -29,7 +29,7 @@ export const getEquipmentInfo = () => {
 };
 
 /**
- *
+ * @description 元素位置变化监听
  * @param targetEle 参照dom
  * @param size 重叠占比 0~1
  * @returns IntersectionObserver
@@ -44,4 +44,31 @@ export const createIntersectionListen: (
     threshold: size,
   });
   return ioInstance;
+};
+
+/**
+ * @description 页面加载监听
+ * @param callback 回调
+ */
+export const onLoad: (callback: any) => void = function (callback) {
+  if (document.readyState === 'complete') {
+    callback();
+  } else {
+    window.addEventListener('load', callback);
+  }
+};
+
+/**
+ * @description 获取页面最后一个执行的事件
+ * @returns
+ */
+export const getLastEvent: () => void = function () {
+  let lastEvent;
+  ['click', 'touchstart', 'mousedown', 'keydown', 'mouseover'].forEach((item) => {
+    document.addEventListener(item, (event) => (lastEvent = event), {
+      capture: true,
+      passive: true,
+    });
+  });
+  return lastEvent;
 };

@@ -36,11 +36,13 @@
     watch,
   } from 'vue';
   import { Button } from 'ant-design-vue';
-  import { createIntersectionListen } from '/@/utils/libs/utils';
+  import { createIntersectionListen } from '/@/utils/tool/utils';
 
-  const props = defineProps({
-    list: Array,
-  });
+  // const props = defineProps({
+  //   list: Array,
+  // });
+  // 新方式牛
+  const props = defineProps<{ list: string[] }>();
 
   const emits = defineEmits(['change']);
 
@@ -126,6 +128,7 @@
   });
 </script>
 <style lang="less" scoped>
+  // @import '/index.css';
   .card-list {
     min-height: 200px;
     .img-box {

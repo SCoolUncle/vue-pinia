@@ -10,3 +10,14 @@ export function getMenuList(params) {
     { showMessage: 'error' },
   );
 }
+
+export function getMenuListError(params) {
+  return http.request(
+    {
+      url: `/local/table/getDemoListError`,
+      method: 'get',
+      params: params,
+    },
+    { showMessage: 'error' },
+  );
+}
