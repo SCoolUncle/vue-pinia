@@ -1,28 +1,5 @@
-import { createStore } from 'vuex';
+import { useStore } from './pinia/index';
+import { useUserStore } from './pinia/user';
+import { useHomeStore } from './pinia/home';
 
-import user from './modules/user';
-import home from './modules/home';
-
-const store = createStore({
-  state: {
-    historyUrl: '',
-  },
-  mutations: {
-    setHistoryUrl(state, payload) {
-      state.historyUrl = payload;
-    },
-  },
-  actions: {},
-  getters: {},
-
-  modules: {
-    user,
-    home,
-  },
-});
-
-const setupStore = (app) => {
-  app.use(store);
-};
-
-export { store, setupStore };
+export { useStore, useUserStore, useHomeStore };

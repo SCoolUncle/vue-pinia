@@ -17,6 +17,7 @@
     "cookies-ts": "^1.0.5",
     "lodash-es": "^4.17.21",
     "moment": "^2.29.1",
+    "pinia": "^2.0.14",
     "vite-plugin-importer": "^0.2.5",
     "vue": "^3.2.16",
     "vue-router": "^4.0.12",
