@@ -115,8 +115,9 @@
 
   import { Icon } from '/@/components';
   import { Form, Input, message } from 'ant-design-vue';
-  import { useStore } from 'vuex';
+  // import { useStore } from 'vuex';
   import { useRoute, useRouter } from 'vue-router';
+  import { useUserStore } from '/@/store';
 
   const namespace = 'user';
 
@@ -130,7 +131,11 @@
   const route = useRoute();
   const loginForm = ref();
   const registerForm = ref();
-  const store = useStore();
+  const store = useUserStore();
+  // ✖ 本质是reactive 包裹的对象，不能直接对其解构操作，会失去响应性
+  // const { handleLogin, handleRegister } = useUserStore();
+  // ✔ pinia 提供storeToRefs() 方法用来解构操作以保持响应性
+  // const {handleLogin, handleRegister} = storeToRefs(useUserStore())
 
   const state = reactive({
     isLogin: true,
@@ -195,7 +200,7 @@
     delete formData.checkPassword;
     const res = await loginForm.value.validate();
     if (!res) return;
-    await store.dispatch('handleLogin', { ...formData });
+    await store.handleLogin({ ...formData });
     const nextUrl = route.query.url ? route.query.url : '/';
     router.replace(nextUrl.toString());
   }
@@ -203,7 +208,7 @@
   async function register() {
     const res = await registerForm.value.validate();
     if (!res) return;
-    await store.dispatch('handleRegister', { ...formData });
+    await store.handleRegister({ ...formData });
     router.push('/');
   }
 
@@ -215,6 +220,7 @@
   function loginHandle() {
     state.isLogin = true;
   }
+
   function registerHandle() {
     state.isLogin = false;
   }
