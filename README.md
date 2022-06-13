@@ -1,4 +1,4 @@
-# You And I pc/mobile
+# pinia  测试
 
 ## 初始化
 
@@ -7,13 +7,13 @@
 - Get the project code
 
 ```bash
-git clone https://github.com/SCoolUncle/yai-web.git
+git clone https://github.com/SCoolUncle/.git
 ```
 
 - Installation dependencies
 
 ```bash
-cd yai-web
+cd vue-pinia
 
 yarn install
 
@@ -36,7 +36,6 @@ yarn build
 *** 格式 ***
 
 ```javascript
-  // 必须遵守以下结构，写后端一定注意
   {
     code:200, // error:-1 success:200
     data:{
@@ -64,10 +63,9 @@ yarn build
 
 ## 编码规范
 
-- 基于airbnb的编码规范，老老实实！禁止个性化！请严格遵守！！！
 - [airbnb](https://github.com/libertyAlone/airbnb-javascript-style-guide-cn)
 
-## Git 提交规范 严格遵守
+## Git 提交规范
 
 - reference [vue](https://github.com/vuejs/vue/blob/dev/.github/COMMIT_CONVENTION.md) specification ([Angular](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular))
 
